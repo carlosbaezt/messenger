@@ -7,17 +7,36 @@
                         <img src="assets/img/generic_avatar.png" id="homeAvatarPicture">
                     </div>
                 </div>
+                <div class="col">
+                    <b>UserName</b>
+                    <div>
+                        <span>Online</span>
+                        <br/>
+                        <span>< Write a personal message ></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <input type="text" placeholder="Search" [(ngModel)]="query" />
-    <br/>
-    <b>All:</b>
-    <ng-container *ngFor="let user of friends | search: query ; let position = index">
-        <div>
-            <a routerLink="/conversation/{{user.uid}}" >
-                {{ position }} - {{ user.nick }} - {{ user.email }}
-            </a>
+    <div class="whiteContainerPadded marto15">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="query" />
+            </div>
+            <div class="col-md-auto">
+                <img src="assets/img/logo_live_add.png" class="icon">
+            </div>
         </div>
-    </ng-container>
+        <hr>
+        <b>Friends ({{ friends.length }}) /  ({{ friends.length }})  </b>
+        <div *ngFor="let user of friends | search: query ; let position = index" class="disblock marbo15">
+            <div>
+                <span routerLink="/conversation/{{user.uid}}" >
+                    <img src="assets/img/logo_live_online.png" class="icon">
+                    <b> {{ user.nick }} </b> - {{ user.subnick || 'Hi' }}
+                    <small> {{ user.email }} </small>
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
