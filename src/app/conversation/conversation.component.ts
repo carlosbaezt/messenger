@@ -19,8 +19,6 @@ export class ConversationComponent implements OnInit {
     textMessage: string;
     conversation: any;
     shake = false;
-    @ViewChild('scrollMe') private myScrollContainer: ElementRef;
-
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -80,22 +78,20 @@ export class ConversationComponent implements OnInit {
     getConversation() {
         this.conversationService.getConversation(this.conversation_id).valueChanges().subscribe(
             (data: Message[]) =>  {
-                this.conversation = data.filter( (messages) => messages.type != 'zumbido' );
+                this.conversation = data;
                 this.conversation.forEach((message) => {
                     if (!message.seen) {
                         message.seen = true;
                         this.conversationService.editConversation(message);
-                        if(message.type === 'text')
-                        {
+                        if (message.type === 'text') {
                             const audio = new Audio('assets/sound/new_message.m4a');
                             audio.play();
-                        } else if(message.type === 'zumbido' ) {
+                        } else if (message.type === 'zumbido' ) {
                             this.doZumbido();
                         }
                     }
                 });
                 console.log(this.conversation);
-                this.scroll(this.myScrollContainer.nativeElement);
             },
             (error) => {
                 console.log(error);
@@ -113,12 +109,12 @@ export class ConversationComponent implements OnInit {
     sendZumbido() {
         const message = {
             uid: this.conversation_id,
-            text: null,
+            text: 'Zumbido !',
             timestamp: Date.now(),
             sender: this.user.uid,
             receiver: this.friend.uid,
             type: 'zumbido'
-        }
+        };
 
         this.conversationService.createConversation(message).then( (data) => { } );
         this.doZumbido();
@@ -131,19 +127,5 @@ export class ConversationComponent implements OnInit {
         window.setTimeout(() => {
             this.shake = false;
         }, 1000);
-    }
-
-
-    scroll(el: HTMLElement) {
-        const node = el;
-
-        // scroll to your element
-        node.scrollIntoView(true);
-
-        // now account for fixed header
-        const scrolledY = el.scrollWidth;
-
-        console.log(el.scrollHeight);
-        el.scrollTop = 200;
     }
 }

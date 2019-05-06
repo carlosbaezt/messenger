@@ -1,0 +1,6 @@
+projectKey=messenger
+serverUrl=http://localhost:9000
+serverVersion=7.7.0.23042
+dashboardUrl=http://localhost:9000/dashboard?id=messenger
+ceTaskId=AWqOziRzNx22r2eiHOMT
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWqOziRzNx22r2eiHOMT

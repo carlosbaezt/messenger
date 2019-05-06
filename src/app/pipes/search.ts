@@ -6,19 +6,16 @@ export class SearchPipe implements PipeTransform {
 
     public transform(value, args: string) {
 
-        if(!value)
-        {
+        if (!value) {
             return;
         }
 
-        if(!args)
-        {
+        if (!args) {
             return value;
         }
 
         args = args.toLowerCase();
-        return value.filter((item) =>
-        {
+        return value.filter((item) => {
             return JSON.stringify(item).toLowerCase().includes(args);
         });
 

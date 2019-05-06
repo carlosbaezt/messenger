@@ -4,7 +4,7 @@
             <div class="col-md-2">
                 <br/>
                 <div class="avatarFrameOnline" >
-                    <img [src]="croppedImage || user.avatar || assets/img/generic_avatar.png" class="avatarImage img-fluid" />
+                    <img [src]="croppedImage || user.avatar || 'assets/img/generic_avatar.png' " class="avatarImage img-fluid" />
                 </div>
                 <hr />
                 <div>
@@ -28,7 +28,7 @@
                     (cropperReady)="cropperReady()"
                     (loadImageFailed)="loadImageFailed()"
                 ></image-cropper>
-                
+
                 <div>
                     <label fixed>Nick</label>
                     <input [(ngModel)]="user.nick" type="text" class="form-control">

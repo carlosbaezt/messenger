@@ -14,7 +14,6 @@ import { Request } from '../interfaces/request';
 })
 export class HomeComponent implements OnInit {
 
-    friends: User[];
     query: string;
     public user: User;
     friendEmail = '';
@@ -26,26 +25,23 @@ export class HomeComponent implements OnInit {
         private modalService: NgbModal,
         private requestService: RequestService
     ) {
-        this.userService.getUsers().valueChanges().subscribe(
-            (users: User[]) => {
-                console.log(users);
-                this.friends = users;
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
-
         this.authenticationService.getStatus().subscribe(
             (data) => {
-                this.userService.getUserById(data.uid).valueChanges().subscribe(
-                    (user: User) => {
-                        this.user = user;
-                    }, (errorUser) => {
-                        console.log(errorUser);
-                    }
-                );
-            }, (error) =>{
+                if (data != null) {
+                    this.userService.getUserById(data.uid).valueChanges().subscribe(
+                        (user: User) => {
+                            this.user = user;
+
+                            if (this.user.friends) {
+                                this.user.friends = Object.values(this.user.friends);
+                                console.log(this.user.friends);
+                            }
+                        }, (errorUser) => {
+                            console.log(errorUser);
+                        }
+                    );
+                }
+            }, (error) => {
                 console.log(error);
             }
         );

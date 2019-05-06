@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    public operation: String = 'login';
+    public operation = 'login';
     public email: string = null;
     public password: string = null;
     public nick: string = null;
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
                 this.userService.createUser(user).then((dataUserService) => {
                     alert('Register Successful');
                     console.log(dataUserService);
-                    this.router.navigate(['home']);
+                    this.router.navigate(['profile']);
                 }).catch( (error) => {
                     alert('Create User Failed');
                     console.log(error);

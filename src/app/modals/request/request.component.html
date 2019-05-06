@@ -1,0 +1,49 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            New Request of Friend
+            <a class="closeButton" (click)="close()">x</a>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="user" class="row">
+                <div class="col-md-3">
+                    <img [src]="user.avatar || 'assets/img/generic_avatar.png' " class="img-fluid">
+                </div>
+                <div class="col-md-9">
+                    <b>{{ user.nick }} </b>
+                    <div>
+                        <span>{{ user.email }}</span>
+                        <br />
+                        <span>{{ user.status }}</span>
+                        <br />
+                        <span>{{ user.subnick }}</span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <hr/>
+                    <h4 class="text-center"> Do you wanna add this friend? </h4>
+                    <br/>
+                    <div>
+                        <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="yes" id="add-yes">
+                        <label for="add-yes">Yes</label>
+                        <br/>
+                    </div>
+                    <div>
+                        <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="no" id="add-no">
+                        <label for="add-no">No</label>
+                        <br/>
+                    </div>
+                    <div>
+                        <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="later" id="add-later">
+                        <label for="add-later">Decide later</label>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-primary" (click)="accept()">Ok</a>
+            <a class="btn btn-danger" (click)="close()">Close</a>
+        </div>
+    </div>
+</div>

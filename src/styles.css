@@ -31,7 +31,7 @@
     box-shadow: 3px3px21px1pxrgba(0, 0, 0, 0.75);
     display: inline-block;
   }
-  
+
 
 .center
 {
@@ -63,7 +63,7 @@
     display: block !important;
 }
 
-.marbo15
+.marbo5
 {
     margin-bottom: 5px;
 }
@@ -110,4 +110,16 @@ input[type="file"]
 
 .btn{
     color: white !important;
+}
+
+a {
+    cursor: pointer;
+    color: #007bff !important;
+}
+
+
+img.icon
+{
+    width: 30px;
+    cursor: pointer;
 }

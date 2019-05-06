@@ -4,13 +4,13 @@
             <div id="conversationSidebar">
                 <div *ngIf="friend" class="vh30">
                     <div class="avatarFrameonline">
-                        <img [src]="friend.avatar || assets/img/generic_avatar.png " class="avatarFrameOnline avatarImage img-fluid">
+                        <img [src]="friend.avatar || 'assets/img/generic_avatar.png' " class="avatarFrameOnline avatarImage img-fluid">
                     </div>
                 </div>
                 <div class="vh30"></div>
                 <div *ngIf="user"  class="vh25">
                     <div class="avatarFrameonline">
-                        <img [src]="user.avatar || assets/img/generic_avatar.png " class="avatarFrameOnline avatarImage img-fluid">
+                        <img [src]="user.avatar || 'assets/img/generic_avatar.png' " class="avatarFrameOnline avatarImage img-fluid">
                     </div>
                 </div>
             </div>

@@ -39,8 +39,7 @@ export class ProfileComponent implements OnInit {
     }
 
     saveSettings() {
-        if(this.croppedImage)
-        {
+        if (this.croppedImage.length > 0) {
             const avatarRoute = 'pictures/' + this.user.uid + '.jpg';
             this.firebaseStorage.ref(avatarRoute).putString(this.croppedImage, 'data_url').then(
                 (data) => {

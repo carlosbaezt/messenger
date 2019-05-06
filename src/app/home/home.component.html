@@ -4,10 +4,10 @@
             <div *ngIf="user" class="row">
                 <div class="col-md-auto">
                     <div class="avatarFrameOnline">
-                        <img [src]="user.avatar || assets/img/generic_avatar.png " id="homeAvatarPicture">
+                        <img [src]="user.avatar || 'assets/img/generic_avatar.png' " id="homeAvatarPicture">
                     </div>
                 </div>
-                <div class="col">
+                <div *ngIf="user" class="col">
                     <b>{{ user.nick }}</b>
                     <div>
                         <span>{{ user.status }}</span>
@@ -30,14 +30,10 @@
             </div>
         </div>
         <hr>
-        <b *ngIf="friends">Friends ({{ friends.length }}) / ({{ friends.length }}) </b>
-        <div *ngFor="let user of friends | search: query ; let position = index" class="disblock marbo15">
-            <div>
-                <span routerLink="/conversation/{{user.uid}}">
-                    <img src="assets/img/logo_live_online.png" class="icon">
-                    <b> {{ user.nick }} </b> - {{ user.subnick || 'Hi' }}
-                    <small> {{ user.email }} </small>
-                </span>
+        <div *ngIf="user && user.friends">
+            <b>Friends ({{ user.friends.length }}) / ({{ user.friends.length }}) </b>
+            <div class="disblock marbo15">
+                <app-contact class="col-md-12" *ngFor="let user of user.friends | search: query ; let position = index" [uid]="user"></app-contact>
             </div>
         </div>
     </div>

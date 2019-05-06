@@ -19,6 +19,8 @@ import { AuthenticationGuard } from './services/authentication.guard';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { RequestComponent } from './modals/request/request.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 
@@ -38,7 +40,9 @@ const APP_ROUTES: Routes = [
     ConversationComponent,
     ProfileComponent,
     MenuComponent,
-    SearchPipe
+    SearchPipe,
+    RequestComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +55,11 @@ const APP_ROUTES: Routes = [
     AngularFireDatabaseModule,
     ImageCropperModule,
     NgbModule,
+    // La idea es que se añada el modal en el app.component
     BootstrapModalModule.forRoot({ container: document.body })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RequestComponent]
 })
 export class AppModule { }
