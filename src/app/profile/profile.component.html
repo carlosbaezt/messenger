@@ -1,36 +1,49 @@
 <div id="profileContainer">
     <div class="container paddto45">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="avatarFrameOnline">
-                    <img src="assets/img/generic_avatar.png" class="avatarImage img-fluid" />
+        <div class="row" *ngIf="user">
+            <div class="col-md-2">
+                <br/>
+                <div class="avatarFrameOnline" >
+                    <img [src]="croppedImage || user.avatar || assets/img/generic_avatar.png" class="avatarImage img-fluid" />
                 </div>
                 <hr />
                 <div>
                     <span>Change Photo</span>
                     <br />
                     <label class="custom-file-upload">
-                        <input type="file">
+                        <input type="file" (change)="fileChangeEvent($event)">
                         Upload Avatar
                     </label>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
+                <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]="1 / 1"
+                    [resizeToWidth]="512"
+                    format="png"
+                    (imageCropped)="imageCropped($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>
+                
                 <div>
                     <label fixed>Nick</label>
-                    <input type="text" class="form-control">
+                    <input [(ngModel)]="user.nick" type="text" class="form-control">
                 </div>
                 <div>
                     <label fixed>Subnick</label>
-                    <input type="text" class="form-control">
+                    <input [(ngModel)]="user.subnick" type="text" class="form-control">
                 </div>
                 <div>
                     <label fixed>Email</label>
-                    <input type="email" disabled class="form-control">
+                    <input [(ngModel)]="user.email" type="email" disabled class="form-control">
                 </div>
                 <div>
                     <label fixed>Staus</label>
-                    <select class="form-control">
+                    <select [(ngModel)]="user.status" class="form-control">
                         <option value="online">Online</option>
                         <option value="away">Away</option>
                         <option value="busy">Busy</option>
@@ -38,7 +51,7 @@
                     </select>
                 </div>
                 <hr/>
-                <a class="btn btn-primary btn-block">Save</a>
+                <a (click)="(saveSettings())" class="btn btn-primary btn-block">Save</a>
             </div>
         </div>
     </div>

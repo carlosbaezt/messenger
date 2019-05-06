@@ -20,13 +20,13 @@
                 </p>
 
                 <div class="borededContainer">
-                    <input class="form-control marbo15" type="email" placeholder="Email"/>
-                    <input class="form-control marbo15" type="password" placeholder="Password"/>
-                    <input *ngIf="operation == 'register' " class="form-control marbo15" type="text" placeholder="Nick"/>
+                    <input [(ngModel)]="email" class="form-control marbo15" type="email" placeholder="Email"/>
+                    <input [(ngModel)]="password" class="form-control marbo15" type="password" placeholder="Password"/>
+                    <input [(ngModel)]="nick" *ngIf="operation == 'register' " class="form-control marbo15" type="text" placeholder="Nick"/>
                 </div>
                 <div class="center marto15">
-                    <a *ngIf="operation == 'login'" class="btn btn-primary">LogIn</a>
-                    <a *ngIf="operation == 'register'" class="btn btn-success">Register</a>
+                    <a (click)="login()" *ngIf="operation == 'login'" class="btn btn-primary">LogIn</a>
+                    <a (click)="register()" *ngIf="operation == 'register'" class="btn btn-success">Register</a>
                 </div>
             </div>
         </div>

@@ -1,10 +1,11 @@
-export interface User
-{
+export interface User {
     nick: string;
     // el operador "?" permite hacer los campos opcionales.
     subnick?: string;
-    age: number;
+    age?: number;
     email: string;
-    friend: boolean;
+    friend?: boolean;
     uid: any;
+    status?: string;
+    avatar?: string;
 }
